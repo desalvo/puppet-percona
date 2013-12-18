@@ -1,0 +1,56 @@
+[mysqld]
+datadir=<%= datadir %>
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+<% if @old_passwords %>
+# Default to using old password format for compatibility with mysql 3.x
+# clients (those using the mysqlclient10 compatibility package).
+old_passwords=1
+<% end %>
+
+<%if @skip_slave_start %>skip-slave-start<% end %>
+innodb_buffer_pool_size = <%= innodb_buffer_pool_size %>
+innodb_log_file_size = <%= innodb_log_file_size %>
+bulk_insert_buffer_size = <%= bulk_insert_buffer_size %>
+innodb_flush_log_at_trx_commit = <%= innodb_flush_log_at_trx_commit %>
+innodb_file_format = <%= innodb_file_format %>
+innodb_file_format_max = <%= innodb_file_format_max %>
+sort_buffer_size = <%= sort_buffer_size %>
+read_buffer_size = <%= read_buffer_size %>
+read_rnd_buffer_size = <%= read_rnd_buffer_size %>
+key_buffer_size = <%= key_buffer_size %>
+myisam_sort_buffer_size = <%= myisam_sort_buffer_size %>
+thread_cache = <%= thread_cache %>
+query_cache_size = <%= query_cache_size %>
+thread_concurrency = <%= thread_concurrency %>
+max_allowed_packet = <%= max_allowed_packet %>
+<%if @innodb_file_per_table %>innodb_file_per_table<% end %>
+
+# Query Cache is not supported with wsrep
+query_cache_size=0
+query_cache_type=0
+
+wsrep_max_ws_rows=<%= wsrep_max_ws_rows %>
+wsrep_max_ws_size=<%= wsrep_max_ws_size %>
+wsrep_provider=<%= wsrep_provider %>
+wsrep_cluster_address=<%= wsrep_cluster_address %>
+wsrep_provider_options = "<%= wsrep_provider_options %>"
+wsrep_sst_receive_address=<%= wsrep_sst_receive_address %>
+wsrep_slave_threads=<%= wsrep_slave_threads %>
+wsrep_cluster_name=<%= wsrep_cluster_name %>
+wsrep_sst_method=<%= wsrep_sst_method %>
+<%if @wsrep_sst_auth %>wsrep_sst_auth="<%= wsrep_sst_auth %>"<% end %>
+binlog_format=<%= binlog_format %>
+default_storage_engine=<%= default_storage_engine %>
+innodb_autoinc_lock_mode=<%= innodb_autoinc_lock_mode %>
+innodb_locks_unsafe_for_binlog=<%= innodb_locks_unsafe_for_binlog %>
+
+# Disabling symbolic-links is recommended to prevent assorted security risks;
+# to do so, uncomment this line:
+# symbolic-links=0
+
+server-id = <%= server_id %>
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
