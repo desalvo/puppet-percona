@@ -1,4 +1,3 @@
-#
 class percona::params {
 
   case $::osfamily {

@@ -21,9 +21,11 @@ This is a simple example to configure a percona server.
 
 **Using the percona XtraDB module**
 
-```percona::xtradb::server
-class { 'percona::xtradb::server':
-    fdpass => 'PASS',
+```percona
+class { 'percona':
+    root_password => 'dummy_password',
+    wsrep_cluster_address => 'gcomm://192.168.0.1:4010,192.168.0.2:4010',
+    wsrep_cluster_name => 'mycluster'
 }
 ```
 

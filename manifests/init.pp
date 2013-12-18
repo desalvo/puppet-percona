@@ -7,10 +7,116 @@
 # [*gcomm*]
 #   The galera wsrep_cluster_address parameters
 #
+# [*mysql_version*]
+#   The Percona mysql version to be used. Currently 5.5 or 5.6
+#
+# [*root_password*]
+#   The root password of the database
+#
+# [*old_passwords*]
+#   Set this to tru to support the old mysql 3.x hashes for the passwords
+#
+# [*datadir*]
+#   The mysql data directory, defaults to /var/lib/mysql
+#
+# [*server_id*]
+#   The server id, defaults to 1
+#
+# [*skip_slave_start*]
+#   Set this to true to skip the slave startup on boot
+#
+# [*ist_recv_addr*]
+#   The IST receiver address for WSREP
+#
+# [*wsrep_max_ws_size*]
+#   The WSREP max working set size
+#
+# [*wsrep_cluster_address*]
+#   The WSREP cluster address list, like gcomm://<ip1>:4010,<ip2>:4010
+#
+# [*wsrep_provider*]
+#   The WSREP provider
+#
+# [*wsrep_max_ws_rows*]
+#   The WSREP max working set rows
+#
+# [*wsrep_sst_receive_address*]
+#   The SST receiver address
+#
+# [*wsrep_slave_threads*]
+#   Number of WSREP slave threads
+#
+# [*wsrep_sst_method*]
+#   The WSREP SST method, like rsync or xtrabackup
+#
+# [*wsrep_sst_auth*]
+#   The auth string for SST, if needed
+#
+# [*wsrep_cluster_name*]
+#   The WSREP cluster name
+#
+# [*binlog_format*]
+#   The binlog format
+#
+# [*default_storage_engine*]
+#   The default storage engine
+#
+# [*innodb_autoinc_lock_mode*]
+#   The innodb lock mode
+#
+# [*innodb_locks_unsafe_for_binlog*]
+#   Set this to true if you want to use unsafe locks for the binlogs
+#
+# [*innodb_buffer_pool_size*]
+#   The innodb buffer pool size
+#
+# [*innodb_log_file_size*]
+#   The innodb log file size
+#
+# [*bulk_insert_buffer_size*]
+#   The size of the insert buffer
+#
+# [*innodb_flush_log_at_trx_commit*]
+#   Set this to allow flushing of logs at transaction commit
+#
+# [*innodb_file_per_table*]
+#   Set this to tru to allow using sepafate files for the innodb tablespace
+#
+# [*innodb_file_format*]
+#   The file format for innodb
+#
+# [*innodb_file_format_max*]
+#   The higher level of file formats for innodb
+#
+# [*sort_buffer_size*]
+#   The size of the sort buffer
+#
+# [*read_buffer_size*]
+#   The size of the read buffer
+#
+# [*read_rnd_buffer_size*]
+#   The size of the rnd buffer
+#
+# [*key_buffer_size*]
+#   Size for keys
+#
+# [*myisam_sort_buffer_size*]
+#   The myisam sort buffer size
+#
+# [*thread_cache*]
+#   The number of thread caches
+#
+# [*query_cache_size*]
+#   The size of the query cache
+#
+# [*thread_concurrency*]
+#   Number of allowed concurrent threads
+#
+#
 # === Examples
 #
 #  class { percona:
-#    wsrep_cluster_address => [ 'pool.ntp.org', 'ntp.local.company.com' ],
+#    wsrep_cluster_address => 'gcomm://192.168.0.1:4010,192.168.0.2:4010'
 #  }
 #
 # === Authors
