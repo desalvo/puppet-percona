@@ -80,6 +80,10 @@ Contributors
 Release Notes
 -------------
 
+**0.1.3**
+
+* Fixed bug on percona startup procedure
+
 **0.1.2**
 
 * Improved documentation

@@ -1,7 +1,7 @@
 [mysqld]
 datadir=<%= datadir %>
 <% if osfamily == 'RedHat' %>socket=/var/lib/mysql/mysql.sock<% else %>socket=/var/run/mysqld/mysqld.sock<% end %>
-<% if osfamily != 'RedHat' %>pid-file=/var/run/mysqld/mysqld.pid<% end %>
+<% if osfamily != 'RedHat' %>pid-file=/var/lib/mysql/<%= hostname %>.pid<% end %>
 user=mysql
 <% if @old_passwords %>
 # Default to using old password format for compatibility with mysql 3.x

@@ -183,12 +183,14 @@ class percona (
 
     file {$percona::params::percona_conf:
         content => template('percona/my.cnf.erb'),
-        notify => Service[$percona::params::percona_service],
+        require => Package[$percona::params::percona_server_packages],
+        notify  => Service[$percona::params::percona_service]
     }
 
     service { $percona::params::percona_service:
         ensure => running,
         enable => true,
+        hasrestart => true,
         require => [File[$percona::params::percona_conf],Package[$percona::params::percona_client_packages],Exec["init percona db"]],
     }
 
