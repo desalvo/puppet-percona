@@ -1,5 +1,5 @@
 name    'desalvo-percona'
-version '0.1.0'
+version '0.1.2'
 source 'https://github.com/desalvo/puppet-percona'
 author 'desalvo'
 license 'Apache License, Version 2.0'

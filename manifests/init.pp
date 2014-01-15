@@ -4,9 +4,6 @@
 #
 # === Parameters
 #
-# [*gcomm*]
-#   The galera wsrep_cluster_address parameters
-#
 # [*mysql_version*]
 #   The Percona mysql version to be used. Currently 5.5 or 5.6
 #
@@ -14,7 +11,7 @@
 #   The root password of the database
 #
 # [*old_passwords*]
-#   Set this to tru to support the old mysql 3.x hashes for the passwords
+#   Set this to true to support the old mysql 3.x hashes for the passwords
 #
 # [*datadir*]
 #   The mysql data directory, defaults to /var/lib/mysql
@@ -80,7 +77,7 @@
 #   Set this to allow flushing of logs at transaction commit
 #
 # [*innodb_file_per_table*]
-#   Set this to tru to allow using sepafate files for the innodb tablespace
+#   Set this to true to allow using sepafate files for the innodb tablespace
 #
 # [*innodb_file_format*]
 #   The file format for innodb
