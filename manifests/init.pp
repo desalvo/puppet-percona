@@ -137,7 +137,7 @@ class percona (
   $ist_recv_addr = $ipaddress,
   $wsrep_max_ws_size = "2G",
   $wsrep_cluster_address = "gcomm://",
-  $wsrep_provider = "/usr/lib64/libgalera_smm.so",
+  $wsrep_provider = $percona::params::galera_provider,
   $wsrep_max_ws_rows = 1024000,
   $wsrep_sst_receive_address = "${ipaddress}:4020",
   $wsrep_slave_threads = 2,
@@ -165,19 +165,26 @@ class percona (
   $thread_concurrency = 2,
   $max_allowed_packet = "128M",
 ) inherits params {
-    yumrepo { "Percona":
-        descr    => "CentOS \$releasever - Percona",
-        baseurl  => "http://repo.percona.com/centos/$operatingsystemmajrelease/os/\$basearch/",
-        enabled  => 1,
-        gpgkey   => "http://www.percona.com/downloads/RPM-GPG-KEY-percona",
-        gpgcheck => 1
+    if ($percona::params::percona_compat_packages) {
+        package { $percona::params::percona_compat_packages: require => $percona::params::percona_repo }
+        $percona_server_req = Package[$percona::params::percona_compat_packages]
+    } else {
+        $percona_server_req = $percona::params::percona_repo
     }
-    package { $percona::params::percona_compat_packages: }
-    package { $percona::params::percona_server_packages: require => Package[$percona::params::percona_compat_packages] }
+    package { $percona::params::percona_galera_package:  require => $percona_server_req }
+    package { $percona::params::percona_server_packages: require => Package[$percona::params::percona_galera_package] }
     package { $percona::params::percona_client_packages: require => Package[$percona::params::percona_server_packages] }
+
+    exec { "init percona db":
+        command => "mysql_install_db",
+        path    => [ '/bin', '/usr/bin' ],
+        unless  => "test -f $percona::params::percona_host_table",
+        timeout => 0
+    }
+
     $wsrep_provider_options = "gcache.size=${wsrep_max_ws_size}; gmcast.listen_addr=tcp://0.0.0.0:4010; ist.recv_addr=${ist_recv_addr}; evs.keepalive_period = PT3S; evs.inactive_check_period = PT10S; evs.suspect_timeout = PT30S; evs.inactive_timeout = PT1M; evs.consensus_timeout = PT1M;"
 
-    file {'/etc/my.cnf':
+    file {$percona::params::percona_conf:
         content => template('percona/my.cnf.erb'),
         notify => Service[$percona::params::percona_service],
     }
@@ -185,7 +192,7 @@ class percona (
     service { $percona::params::percona_service:
         ensure => running,
         enable => true,
-        require => Package[$percona::params::percona_server_packages],
+        require => [File[$percona::params::percona_conf],Package[$percona::params::percona_client_packages],Exec["init percona db"]],
     }
 
     if ($root_password) {

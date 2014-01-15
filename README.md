@@ -29,6 +29,8 @@ class { 'percona':
 }
 ```
 
+Please note that in case you already have other DB machines in the cluster you will need to use the same value of innodb_log_file_size for all the components of the cluster.
+
 Contributors
 ------------
 
@@ -37,6 +39,11 @@ Contributors
 Release Notes
 -------------
 
+**0.1.1**
+
+* Added support for Ubuntu/Debian.
+* Better handling of the initial setup.
+
 **0.1.0**
 
-* Initial version
+* Initial version.
