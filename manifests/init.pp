@@ -176,6 +176,7 @@ class percona (
         command => "mysql_install_db",
         path    => [ '/bin', '/usr/bin' ],
         unless  => "test -f $percona::params::percona_host_table",
+        require => [File[$percona::params::percona_conf],File[$datadir],Package[$percona::params::percona_server_packages]],
         timeout => 0
     }
 
@@ -187,11 +188,19 @@ class percona (
         notify  => Service[$percona::params::percona_service]
     }
 
+    file {$datadir:
+        ensure => directory,
+        owner  => mysql,
+        group  => mysql,
+        require => Package[$percona::params::percona_server_packages],
+        notify  => Service[$percona::params::percona_service]
+    }
+
     service { $percona::params::percona_service:
         ensure => running,
         enable => true,
         hasrestart => true,
-        require => [File[$percona::params::percona_conf],Package[$percona::params::percona_client_packages],Exec["init percona db"]],
+        require => [File[$percona::params::percona_conf],Package[$percona::params::percona_client_packages],Exec["init percona db"],File[$datadir]],
     }
 
     if ($root_password) {

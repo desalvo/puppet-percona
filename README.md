@@ -80,6 +80,10 @@ Contributors
 Release Notes
 -------------
 
+**0.1.4**
+
+* Better handling of the datadir parameter
+
 **0.1.3**
 
 * Fixed bug on percona startup procedure
