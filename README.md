@@ -80,6 +80,10 @@ Contributors
 Release Notes
 -------------
 
+**0.1.5**
+
+* Fixed mysql db initialization when using a custom datadir location
+
 **0.1.4**
 
 * Better handling of the datadir parameter

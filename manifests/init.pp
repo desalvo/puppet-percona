@@ -175,7 +175,7 @@ class percona (
     exec { "init percona db":
         command => "mysql_install_db",
         path    => [ '/bin', '/usr/bin' ],
-        unless  => "test -f $percona::params::percona_host_table",
+        unless  => "test -f ${datadir}/${percona::params::percona_host_table}",
         require => [File[$percona::params::percona_conf],File[$datadir],Package[$percona::params::percona_server_packages]],
         timeout => 0
     }

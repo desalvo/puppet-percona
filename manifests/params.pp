@@ -4,7 +4,7 @@ class percona::params {
     'RedHat': {
       $percona_conf = '/etc/my.cnf'
       $galera_provider = '/usr/lib64/libgalera_smm.so'
-      $percona_host_table = "/var/lib/mysql/mysql/host.frm"
+      $percona_host_table = "mysql/host.frm"
       $percona_compat_packages = [
                                    'Percona-Server-shared-compat',
                                  ]
@@ -39,7 +39,7 @@ class percona::params {
     'Debian': {
       $percona_conf = '/etc/mysql/my.cnf'
       $galera_provider = '/usr/lib/libgalera_smm.so'
-      $percona_host_table = "/var/lib/mysql/mysql/host.frm"
+      $percona_host_table = "mysql/host.frm"
       case $mysql_version {
         '5.6': {
           $percona_galera_package  = 'percona-xtradb-cluster-galera-3.x'
