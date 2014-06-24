@@ -6,7 +6,7 @@ class percona::params {
       $galera_provider = '/usr/lib64/libgalera_smm.so'
       $percona_host_table = "mysql/host.frm"
       $percona_compat_packages = [
-                                   'Percona-Server-shared-compat',
+                                   'Percona-Server-shared-51',
                                  ]
       case $mysql_version {
         '5.6': {

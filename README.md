@@ -80,6 +80,11 @@ Contributors
 Release Notes
 -------------
 
+**0.1.6**
+
+* Replaced consensus_timeout with install_timeout
+* Updated compat package
+
 **0.1.5**
 
 * Fixed mysql db initialization when using a custom datadir location
