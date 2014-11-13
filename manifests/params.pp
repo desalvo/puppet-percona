@@ -63,7 +63,7 @@ class percona::params {
       $percona_keynum = "CD2EFD2A"
       exec {"import Percona key":
           path    => ['/bin', '/usr/bin'],
-          command => "apt-key adv --keyserver keys.gnupg.net --recv-keys ${percona_keyprefix}${percona_keynum}",
+          command => "apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ${percona_keyprefix}${percona_keynum}",
           unless  => "apt-key export ${percona_keynum} 2>/dev/null | gpg - 2>/dev/null > /dev/null"
       }
       file {'/etc/apt/sources.list.d/percona.list':
