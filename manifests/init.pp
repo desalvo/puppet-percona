@@ -162,21 +162,36 @@ class percona (
   $thread_concurrency = 2,
   $max_allowed_packet = "128M",
 ) inherits params {
+
+    case $mysql_version {
+        '5.6': {
+            $percona_galera_package  = $percona::params::percona_galera_package_56
+            $percona_server_packages = $percona::params::percona_server_packages_56
+            $percona_client_packages = $percona::params::percona_client_packages_56
+        }
+        default: {
+            $percona_galera_package  = $percona::params::percona_galera_package_default
+            $percona_server_packages = $percona::params::percona_server_packages_default
+            $percona_client_packages = $percona::params::percona_client_packages_default
+        }
+    }
+
     if ($percona::params::percona_compat_packages) {
         package { $percona::params::percona_compat_packages: require => $percona::params::percona_repo }
         $percona_server_req = Package[$percona::params::percona_compat_packages]
     } else {
         $percona_server_req = $percona::params::percona_repo
     }
-    package { $percona::params::percona_galera_package:  require => $percona_server_req }
-    package { $percona::params::percona_server_packages: require => Package[$percona::params::percona_galera_package] }
-    package { $percona::params::percona_client_packages: require => Package[$percona::params::percona_server_packages] }
+
+    package { $percona_galera_package:  require => $percona_server_req }
+    package { $percona_server_packages: require => Package[$percona_galera_package] }
+    package { $percona_client_packages: require => Package[$percona_server_packages] }
 
     exec { "init percona db":
         command => "mysql_install_db",
         path    => [ '/bin', '/usr/bin' ],
         unless  => "test -f ${datadir}/${percona::params::percona_host_table}",
-        require => [File[$percona::params::percona_conf],File[$datadir],Package[$percona::params::percona_server_packages]],
+        require => [File[$percona::params::percona_conf],File[$datadir],Package[$percona_server_packages]],
         timeout => 0
     }
 
@@ -184,7 +199,7 @@ class percona (
 
     file {$percona::params::percona_conf:
         content => template('percona/my.cnf.erb'),
-        require => Package[$percona::params::percona_server_packages],
+        require => Package[$percona_server_packages],
         notify  => Service[$percona::params::percona_service]
     }
 
@@ -192,7 +207,7 @@ class percona (
         ensure => directory,
         owner  => mysql,
         group  => mysql,
-        require => Package[$percona::params::percona_server_packages],
+        require => Package[$percona_server_packages],
         notify  => Service[$percona::params::percona_service]
     }
 
@@ -200,7 +215,7 @@ class percona (
         ensure => running,
         enable => true,
         hasrestart => true,
-        require => [File[$percona::params::percona_conf],Package[$percona::params::percona_client_packages],Exec["init percona db"],File[$datadir]],
+        require => [File[$percona::params::percona_conf],Package[$percona_client_packages],Exec["init percona db"],File[$datadir]],
     }
 
     if ($root_password) {
