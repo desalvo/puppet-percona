@@ -1,0 +1,16 @@
+{
+  "name": "puppet-percona",
+  "version": "0.1.6",
+  "author": "desalvo",
+  "summary": "Puppet module for managing Percona XtraDB",
+  "license": "Apache License, Version 2.0",
+  "source": "https://github.com/desalvo/puppet-percona",
+  "project_page": "https://github.com/puppetlabs/puppet-percona",
+  "issues_url": "https://github.com/puppetlabs/puppet-percona/issues",
+  "types": [
+  
+  ],
+  "description": "Puppet module for managing Percona XtraDB",
+  "dependencies": [
+  ]
+}
