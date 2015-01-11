@@ -89,6 +89,11 @@ Release Notes
 
 * Fixed mysql db initialization when using a custom datadir location
 
+**0.1.10**
+
+* Fixed behaviour with multiple versions and bad key server on Debian/Ubuntu
+* Refactoring of the module internals
+
 **0.1.4**
 
 * Better handling of the datadir parameter

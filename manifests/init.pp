@@ -162,53 +162,42 @@ class percona (
   $thread_concurrency = 2,
   $max_allowed_packet = "128M",
 ) inherits params {
-    if ($percona::params::percona_compat_packages) {
-        package { $percona::params::percona_compat_packages: require => $percona::params::percona_repo }
-        $percona_server_req = Package[$percona::params::percona_compat_packages]
-    } else {
-        $percona_server_req = $percona::params::percona_repo
-    }
-    package { $percona::params::percona_galera_package:  require => $percona_server_req }
-    package { $percona::params::percona_server_packages: require => Package[$percona::params::percona_galera_package] }
-    package { $percona::params::percona_client_packages: require => Package[$percona::params::percona_server_packages] }
-
-    exec { "init percona db":
-        command => "mysql_install_db",
-        path    => [ '/bin', '/usr/bin' ],
-        unless  => "test -f ${datadir}/${percona::params::percona_host_table}",
-        require => [File[$percona::params::percona_conf],File[$datadir],Package[$percona::params::percona_server_packages]],
-        timeout => 0
-    }
-
-    $wsrep_provider_options = "gcache.size=${wsrep_max_ws_size}; gmcast.listen_addr=tcp://0.0.0.0:4010; ist.recv_addr=${ist_recv_addr}; evs.keepalive_period = PT3S; evs.inactive_check_period = PT10S; evs.suspect_timeout = PT30S; evs.inactive_timeout = PT1M; evs.install_timeout = PT1M;"
-
-    file {$percona::params::percona_conf:
-        content => template('percona/my.cnf.erb'),
-        require => Package[$percona::params::percona_server_packages],
-        notify  => Service[$percona::params::percona_service]
-    }
-
-    file {$datadir:
-        ensure => directory,
-        owner  => mysql,
-        group  => mysql,
-        require => Package[$percona::params::percona_server_packages],
-        notify  => Service[$percona::params::percona_service]
-    }
-
-    service { $percona::params::percona_service:
-        ensure => running,
-        enable => true,
-        hasrestart => true,
-        require => [File[$percona::params::percona_conf],Package[$percona::params::percona_client_packages],Exec["init percona db"],File[$datadir]],
-    }
-
-    if ($root_password) {
-        exec {"set-percona-root-password":
-            command => "mysqladmin -u root password \"$root_password\"",
-            path    => ["/usr/bin"],
-            onlyif  => "mysqladmin -u root status 2>&1 > /dev/null",
-            require => Service [$percona::params::percona_service]
-        }
+    class { percona::server:
+        mysql_version                  => $mysql_version,
+        root_password                  => $root_password,
+        old_passwords                  => $old_passwords,
+        datadir                        => $datadir,
+        server_id                      => $server_id,
+        skip_slave_start               => $skip_slave_start,
+        ist_recv_addr                  => $ist_recv_addr,
+        wsrep_max_ws_size              => $wsrep_max_ws_size,
+        wsrep_cluster_address          => $wsrep_cluster_address,
+        wsrep_provider                 => $wsrep_provider,
+        wsrep_max_ws_rows              => $wsrep_max_ws_rows,
+        wsrep_sst_receive_address      => $wsrep_sst_receive_address,
+        wsrep_slave_threads            => $wsrep_slave_threads,
+        wsrep_sst_method               => $wsrep_sst_method,
+        wsrep_sst_auth                 => $wsrep_sst_auth,
+        wsrep_cluster_name             => $wsrep_cluster_name,
+        binlog_format                  => $binlog_format,
+        default_storage_engine         => $default_storage_engine,
+        innodb_autoinc_lock_mode       => $innodb_autoinc_lock_mode,
+        innodb_locks_unsafe_for_binlog => $innodb_locks_unsafe_for_binlog,
+        innodb_buffer_pool_size        => $innodb_buffer_pool_size,
+        innodb_log_file_size           => $innodb_log_file_size,
+        bulk_insert_buffer_size        => $bulk_insert_buffer_size,
+        innodb_flush_log_at_trx_commit => $innodb_flush_log_at_trx_commit,
+        innodb_file_per_table          => $innodb_file_per_table,
+        innodb_file_format             => $innodb_file_format,
+        innodb_file_format_max         => $innodb_file_format_max,
+        sort_buffer_size               => $sort_buffer_size,
+        read_buffer_size               => $read_buffer_size,
+        read_rnd_buffer_size           => $read_rnd_buffer_size,
+        key_buffer_size                => $key_buffer_size,
+        myisam_sort_buffer_size        => $myisam_sort_buffer_size,
+        thread_cache                   => $thread_cache,
+        query_cache_size               => $query_cache_size,
+        thread_concurrency             => $thread_concurrency,
+        max_allowed_packet             => $max_allowed_packet,
     }
 }
