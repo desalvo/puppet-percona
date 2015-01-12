@@ -4,7 +4,7 @@ class percona::params {
     'RedHat': {
       $percona_conf = '/etc/my.cnf'
       $galera_provider = '/usr/lib64/libgalera_smm.so'
-      $percona_host_table = "mysql/host.frm"
+      $percona_host_table = "mysql/user.frm"
       $percona_service = 'mysql'
       yumrepo { "Percona":
           descr    => "CentOS \$releasever - Percona",
@@ -18,7 +18,7 @@ class percona::params {
     'Debian': {
       $percona_conf = '/etc/mysql/my.cnf'
       $galera_provider = '/usr/lib/libgalera_smm.so'
-      $percona_host_table = "mysql/host.frm"
+      $percona_host_table = "mysql/user.frm"
       $percona_service = 'mysql'
       $percona_keyprefix = "1C4CBDCD"
       $percona_keynum = "CD2EFD2A"
