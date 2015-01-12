@@ -44,7 +44,7 @@ class percona::server (
                                  ]
       case $mysql_version {
         '5.6': {
-          $percona_galera_package  = 'Percona-XtraDB-Cluster-galera-56'
+          $percona_galera_package  = 'Percona-XtraDB-Cluster-galera-3'
           $percona_server_packages = [
                                        'Percona-XtraDB-Cluster-server-56',
                                        'percona-xtrabackup'
