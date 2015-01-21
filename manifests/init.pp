@@ -170,6 +170,7 @@ class percona (
         mysql_version                  => $mysql_version,
         root_password                  => $root_password,
         old_passwords                  => $old_passwords,
+        port                           => $port,
         datadir                        => $datadir,
         server_id                      => $server_id,
         skip_slave_start               => $skip_slave_start,
