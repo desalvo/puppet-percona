@@ -21,6 +21,7 @@ The following parameters are supported:
 * **root_password**: the root password of the database [default: unset]
 * **old_passwords**: set this to true to support the old mysql 3.x hashes for the passwords [default: false]
 * **datadir**: the mysql data directory [default: /var/lib/mysql]
+* **port**: the mysql server port [default: 3306]
 * **server_id**: the server id [default: 1]
 * **skip_slave_start**: set this to true to skip the slave startup on boot [default: true]
 * **ist_recv_addr**: the IST receiver address for WSREP [default: ipaddress]

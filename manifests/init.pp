@@ -16,6 +16,9 @@
 # [*datadir*]
 #   The mysql data directory, defaults to /var/lib/mysql
 #
+# [*port*]
+#   The mysql server port, defaults to 3306
+#
 # [*server_id*]
 #   The server id, defaults to 1
 #
@@ -129,6 +132,7 @@ class percona (
   $root_password = undef,
   $old_passwords = false,
   $datadir = "/var/lib/mysql",
+  $port = "3306",
   $server_id = 1,
   $skip_slave_start = true,
   $ist_recv_addr = $ipaddress,
