@@ -80,6 +80,15 @@ Contributors
 Release Notes
 -------------
 
+**0.1.11**
+
+* Add support for changing server port
+
+**0.1.10**
+
+* Fixed behaviour with multiple versions and bad key server on Debian/Ubuntu
+* Refactoring of the module internals
+
 **0.1.6**
 
 * Replaced consensus_timeout with install_timeout
@@ -88,11 +97,6 @@ Release Notes
 **0.1.5**
 
 * Fixed mysql db initialization when using a custom datadir location
-
-**0.1.10**
-
-* Fixed behaviour with multiple versions and bad key server on Debian/Ubuntu
-* Refactoring of the module internals
 
 **0.1.4**
 
