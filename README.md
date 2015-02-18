@@ -53,6 +53,7 @@ The following parameters are supported:
 * **thread_cache**: the number of thread caches [default: 2]
 * **query_cache_size**: the size of the query cache [default: 64M]
 * **thread_concurrency**: number of allowed concurrent threads [default: 2]
+* **log_warnings**: log warning level [default: none]
 
 Usage
 -----
@@ -80,6 +81,10 @@ Contributors
 
 Release Notes
 -------------
+
+**0.1.12**
+
+* Add log_warning setting
 
 **0.1.11**
 

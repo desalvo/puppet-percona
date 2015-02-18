@@ -165,6 +165,7 @@ class percona (
   $query_cache_size = "64M",
   $thread_concurrency = 2,
   $max_allowed_packet = "128M",
+  $log_warnings = undef,
 ) inherits params {
     class { percona::server:
         mysql_version                  => $mysql_version,
@@ -204,5 +205,6 @@ class percona (
         query_cache_size               => $query_cache_size,
         thread_concurrency             => $thread_concurrency,
         max_allowed_packet             => $max_allowed_packet,
+        log_warnings                   => $log_warnings,
     }
 }
