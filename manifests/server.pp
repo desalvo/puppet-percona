@@ -41,9 +41,13 @@ class percona::server (
 
   case $::osfamily {
     'RedHat': {
-      $percona_compat_packages = [
-                                   'Percona-Server-shared-51',
-                                 ]
+      if ($operatingsystemmajrelease < 7) {
+        $percona_compat_packages = [
+                                     'Percona-Server-shared-51',
+                                   ]
+      } else {
+        $percona_compat_packages = []
+      }
       case $mysql_version {
         '5.6': {
           $percona_galera_package  = 'Percona-XtraDB-Cluster-galera-3'

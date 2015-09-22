@@ -82,6 +82,10 @@ Contributors
 Release Notes
 -------------
 
+**0.1.13**
+
+* Add support for RHEL7
+
 **0.1.12**
 
 * Add log_warning setting
