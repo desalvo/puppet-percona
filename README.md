@@ -52,7 +52,6 @@ The following parameters are supported:
 * **myisam_sort_buffer_size**: the myisam sort buffer size [default: 64M]
 * **thread_cache**: the number of thread caches [default: 2]
 * **query_cache_size**: the size of the query cache [default: 64M]
-* **thread_concurrency**: number of allowed concurrent threads [default: 2]
 * **log_warnings**: log warning level [default: none]
 
 Usage
@@ -85,6 +84,7 @@ Release Notes
 **0.1.13**
 
 * Add support for RHEL7
+* Remove deprecated directive thread_concurrency
 
 **0.1.12**
 

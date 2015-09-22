@@ -34,7 +34,6 @@ class percona::server (
   $myisam_sort_buffer_size = "64M",
   $thread_cache = "2",
   $query_cache_size = "64M",
-  $thread_concurrency = 2,
   $max_allowed_packet = "128M",
   $log_warnings = undef,
 ) inherits params {

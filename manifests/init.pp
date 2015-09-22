@@ -109,9 +109,6 @@
 # [*query_cache_size*]
 #   The size of the query cache
 #
-# [*thread_concurrency*]
-#   Number of allowed concurrent threads
-#
 #
 # === Examples
 #
@@ -163,7 +160,6 @@ class percona (
   $myisam_sort_buffer_size = "64M",
   $thread_cache = "2",
   $query_cache_size = "64M",
-  $thread_concurrency = 2,
   $max_allowed_packet = "128M",
   $log_warnings = undef,
 ) inherits params {
@@ -203,7 +199,6 @@ class percona (
         myisam_sort_buffer_size        => $myisam_sort_buffer_size,
         thread_cache                   => $thread_cache,
         query_cache_size               => $query_cache_size,
-        thread_concurrency             => $thread_concurrency,
         max_allowed_packet             => $max_allowed_packet,
         log_warnings                   => $log_warnings,
     }
