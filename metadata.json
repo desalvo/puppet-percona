@@ -1,6 +1,6 @@
 {
   "name": "desalvo-percona",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "author": "desalvo",
   "summary": "Puppet module for percona",
   "license": "Apache License, Version 2.0",

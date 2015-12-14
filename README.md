@@ -81,6 +81,9 @@ Contributors
 Release Notes
 -------------
 
+**0.1.14**
+* Support for the noarch repo
+
 **0.1.13**
 
 * Add support for RHEL7
@@ -98,6 +101,7 @@ Release Notes
 
 * Fixed behaviour with multiple versions and bad key server on Debian/Ubuntu
 * Refactoring of the module internals
+
 
 **0.1.6**
 
