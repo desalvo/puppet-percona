@@ -13,7 +13,14 @@ class percona::params {
           gpgkey   => "http://www.percona.com/downloads/RPM-GPG-KEY-percona",
           gpgcheck => 1
       }
-      $percona_repo = Yumrepo['Percona']
+      yumrepo { "Percona-noarch":
+          descr    => "CentOS \$releasever noarch - Percona",
+          baseurl  => "http://repo.percona.com/centos/$operatingsystemmajrelease/os/noarch/",
+          enabled  => 1,
+          gpgkey   => "http://www.percona.com/downloads/RPM-GPG-KEY-percona",
+          gpgcheck => 1
+      }
+      $percona_repo = [Yumrepo['Percona'],Yumrepo['Percona-noarch']]
     }
     'Debian': {
       $percona_conf = '/etc/mysql/my.cnf'
