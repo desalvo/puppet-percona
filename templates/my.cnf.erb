@@ -1,5 +1,5 @@
 [mysqld]
-bind-address = <%= @bind_address %>
+<% if @bind_address %>bind-address = <%= @bind_address %><% end %>
 port=<%= @port %>
 datadir=<%= @datadir %>
 <% if @osfamily == 'RedHat' %>socket=/var/lib/mysql/mysql.sock<% else %>socket=/var/run/mysqld/mysqld.sock<% end %>

@@ -3,7 +3,7 @@ class percona::server (
   $root_password = undef,
   $old_passwords = false,
   $datadir = "/var/lib/mysql",
-  $bind_address = '0.0.0.0',
+  $bind_address = undef,
   $port = "3306",
   $server_id = 1,
   $skip_slave_start = true,

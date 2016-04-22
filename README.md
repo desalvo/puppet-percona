@@ -21,7 +21,7 @@ The following parameters are supported:
 * **root_password**: the root password of the database [default: unset]
 * **old_passwords**: set this to true to support the old mysql 3.x hashes for the passwords [default: false]
 * **datadir**: the mysql data directory [default: /var/lib/mysql]
-* **bind_address**: the mysql bind address [default: 0.0.0.0]
+* **bind_address**: the mysql bind address
 * **port**: the mysql server port [default: 3306]
 * **server_id**: the server id [default: 1]
 * **skip_slave_start**: set this to true to skip the slave startup on boot [default: true]
