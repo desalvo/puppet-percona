@@ -16,6 +16,9 @@
 # [*datadir*]
 #   The mysql data directory, defaults to /var/lib/mysql
 #
+# [*bind_address*]
+#   The mysql bind address
+#
 # [*port*]
 #   The mysql server port, defaults to 3306
 #
@@ -103,11 +106,38 @@
 # [*myisam_sort_buffer_size*]
 #   The myisam sort buffer size
 #
+# [*max_connections*]
+#   The maximum number of allowed connections
+#
 # [*thread_cache*]
 #   The number of thread caches
 #
+# [*thread_stack*]
+#   The stack size for each thread
+#
+# [*query_cache_limit*]
+#   The size of individual query results that can be cached
+#
 # [*query_cache_size*]
 #   The size of the query cache
+#
+# [*ssl*]
+#   Use SSL
+#
+# [*ssl_ca*]
+#   SSL CA bundle file
+#
+# [*ssl_cert*]
+#   Use certificate file
+#
+# [*ssl_key*]
+#   Use key file
+#
+# [*skip_external_locking*]
+#   Disable external locking if true
+#
+# [*tmpdir*]
+#   The path of the directory to use for creating temporary files
 #
 #
 # === Examples
@@ -129,6 +159,7 @@ class percona (
   $root_password = undef,
   $old_passwords = false,
   $datadir = "/var/lib/mysql",
+  $bind_address = "0.0.0.0",
   $port = "3306",
   $server_id = 1,
   $skip_slave_start = true,
@@ -158,8 +189,17 @@ class percona (
   $read_rnd_buffer_size = "64M",
   $key_buffer_size = "64M",
   $myisam_sort_buffer_size = "64M",
+  $max_connections = "151",
   $thread_cache = "2",
+  $thread_stack = "256K",
+  $tmpdir = "/tmp",
+  $query_cache_limit = "1M",
   $query_cache_size = "64M",
+  $skip_external_locking = true,
+  $ssl = false,
+  $ssl_ca = undef,
+  $ssl_cert = undef,
+  $ssl_key = undef,
   $max_allowed_packet = "128M",
   $log_warnings = undef,
 ) inherits params {
@@ -167,8 +207,9 @@ class percona (
         mysql_version                  => $mysql_version,
         root_password                  => $root_password,
         old_passwords                  => $old_passwords,
-        port                           => $port,
         datadir                        => $datadir,
+        bind_address                   => $bind_address,
+        port                           => $port,
         server_id                      => $server_id,
         skip_slave_start               => $skip_slave_start,
         ist_recv_addr                  => $ist_recv_addr,
@@ -197,8 +238,17 @@ class percona (
         read_rnd_buffer_size           => $read_rnd_buffer_size,
         key_buffer_size                => $key_buffer_size,
         myisam_sort_buffer_size        => $myisam_sort_buffer_size,
+        max_connections                => $max_connections,
         thread_cache                   => $thread_cache,
+        thread_stack                   => $thread_stack,
+        tmpdir                         => $tmpdir,
+        query_cache_limit              => $query_cache_limit,
         query_cache_size               => $query_cache_size,
+        skip_external_locking          => $skip_external_locking,
+        ssl                            => $ssl,
+        ssl_ca                         => $ssl_ca,
+        ssl_cert                       => $ssl_cert,
+        ssl_key                        => $ssl_key,
         max_allowed_packet             => $max_allowed_packet,
         log_warnings                   => $log_warnings,
     }

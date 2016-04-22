@@ -1,4 +1,5 @@
 [mysqld]
+bind-address = <% @bind_address %>
 port=<%= @port %>
 datadir=<%= @datadir %>
 <% if @osfamily == 'RedHat' %>socket=/var/lib/mysql/mysql.sock<% else %>socket=/var/run/mysqld/mysqld.sock<% end %>
@@ -22,11 +23,22 @@ read_buffer_size = <%= @read_buffer_size %>
 read_rnd_buffer_size = <%= @read_rnd_buffer_size %>
 key_buffer_size = <%= @key_buffer_size %>
 myisam_sort_buffer_size = <%= @myisam_sort_buffer_size %>
-thread_cache = <%= @thread_cache %>
+thread_cache_size = <%= @thread_cache %>
+thread_stack = <%= @thread_stack %>
+query_cache_limit = <%= @query_cache_limit %>
 query_cache_size = <%= @query_cache_size %>
 max_allowed_packet = <%= @max_allowed_packet %>
+max_connections = <%= @max_connections %>
 <%if @innodb_file_per_table %>innodb_file_per_table<% end %>
 <%if @log_warnings %>log_warnings=<%= @log_warnings %><% end %>
+<%if @skip_external_locking %>skip_external_locking<% end %>
+<%if @ssl -%>
+ssl = true
+ssl-ca = <% @ssl_ca %>
+ssl-cert = <% @ssl_cert %>
+ssl-key = <% @ssl_key %>
+<% end -%>
+tmpdir = <% @tmpdir %>
 
 # Query Cache is not supported with wsrep
 query_cache_size=0

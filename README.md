@@ -21,6 +21,7 @@ The following parameters are supported:
 * **root_password**: the root password of the database [default: unset]
 * **old_passwords**: set this to true to support the old mysql 3.x hashes for the passwords [default: false]
 * **datadir**: the mysql data directory [default: /var/lib/mysql]
+* **bind_address**: the mysql bind address [default: 0.0.0.0]
 * **port**: the mysql server port [default: 3306]
 * **server_id**: the server id [default: 1]
 * **skip_slave_start**: set this to true to skip the slave startup on boot [default: true]
@@ -50,8 +51,17 @@ The following parameters are supported:
 * **read_rnd_buffer_size**: the size of the rnd buffer [default: 64M]
 * **key_buffer_size**: size of keys [default: 64M]
 * **myisam_sort_buffer_size**: the myisam sort buffer size [default: 64M]
+* **max_connections**: the maximum number of allowed connections [default: 151]
 * **thread_cache**: the number of thread caches [default: 2]
+* **thread_stack**: the stack size for each thread [default: 256K]
+* **query_cache_limit**: the size of individual query results that can be cached
 * **query_cache_size**: the size of the query cache [default: 64M]
+* **skip_external_locking**: disable external locking if true [default: true]
+* **ssl**: Use SSL [default: false]
+* **ssl_ca**: SSL CA bundle file
+* **ssl_cert**: use certificate file
+* **ssl_key**: use key file
+* **tmpdir**: the path of the directory to use for creating temporary files [default: /tmp]
 * **log_warnings**: log warning level [default: none]
 
 Usage
@@ -83,6 +93,7 @@ Release Notes
 
 **0.1.14**
 * Support for the noarch repo
+* Support for other parameters
 
 **0.1.13**
 
