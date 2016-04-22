@@ -1,9 +1,9 @@
 [mysqld]
-<% if @bind_address -%>bind-address = <%= @bind_address %><% end -%>
+<% if @bind_address -%>bind-address = <%= @bind_address %><% end %>
 port=<%= @port %>
 datadir=<%= @datadir %>
 <% if @osfamily == 'RedHat' %>socket=/var/lib/mysql/mysql.sock<% else %>socket=/var/run/mysqld/mysqld.sock<% end %>
-<% if @osfamily != 'RedHat' -%>pid-file=/var/lib/mysql/<%= @hostname %>.pid<% end -%>
+<% if @osfamily != 'RedHat' -%>pid-file=/var/lib/mysql/<%= @hostname %>.pid<% end %>
 user=mysql
 <% if @old_passwords -%>
 # Default to using old password format for compatibility with mysql 3.x
@@ -11,7 +11,7 @@ user=mysql
 old_passwords=1
 <% end -%>
 
-<%if @skip_slave_start -%>skip-slave-start<% end -%>
+<%if @skip_slave_start -%>skip-slave-start<% end %>
 innodb_buffer_pool_size = <%= @innodb_buffer_pool_size %>
 innodb_log_file_size = <%= @innodb_log_file_size %>
 bulk_insert_buffer_size = <%= @bulk_insert_buffer_size %>
@@ -29,9 +29,9 @@ query_cache_limit = <%= @query_cache_limit %>
 query_cache_size = <%= @query_cache_size %>
 max_allowed_packet = <%= @max_allowed_packet %>
 max_connections = <%= @max_connections %>
-<%if @innodb_file_per_table -%>innodb_file_per_table<% end -%>
-<%if @log_warnings -%>log_warnings=<%= @log_warnings %><% end -%>
-<%if @skip_external_locking -%>skip_external_locking<% end -%>
+<%if @innodb_file_per_table -%>innodb_file_per_table<% end %>
+<%if @log_warnings -%>log_warnings=<%= @log_warnings %><% end %>
+<%if @skip_external_locking -%>skip_external_locking<% end %>
 <%if @ssl -%>
 ssl = true
 ssl-ca = <% @ssl_ca %>
