@@ -93,7 +93,7 @@ Release Notes
 
 **0.1.14**
 * Support for the noarch repo
-* Support for other parameters
+* Support for additional parameters
 
 **0.1.13**
 
