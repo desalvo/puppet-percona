@@ -121,6 +121,9 @@
 # [*query_cache_size*]
 #   The size of the query cache
 #
+# [*table_open_cache*]
+#   The number of open tables for all threads
+#
 # [*ssl*]
 #   Use SSL
 #
@@ -195,6 +198,7 @@ class percona (
   $tmpdir = "/tmp",
   $query_cache_limit = "1M",
   $query_cache_size = "64M",
+  $table_open_cache = 400,
   $skip_external_locking = true,
   $ssl = false,
   $ssl_ca = undef,
@@ -244,6 +248,7 @@ class percona (
         tmpdir                         => $tmpdir,
         query_cache_limit              => $query_cache_limit,
         query_cache_size               => $query_cache_size,
+        table_open_cache               => $table_open_cache,
         skip_external_locking          => $skip_external_locking,
         ssl                            => $ssl,
         ssl_ca                         => $ssl_ca,

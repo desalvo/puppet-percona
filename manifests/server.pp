@@ -39,6 +39,7 @@ class percona::server (
   $tmpdir = "/tmp",
   $query_cache_limit = "1M",
   $query_cache_size = "64M",
+  $table_open_cache = 400,
   $skip_external_locking = true,
   $ssl = false,
   $ssl_ca = undef,

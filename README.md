@@ -56,6 +56,7 @@ The following parameters are supported:
 * **thread_stack**: the stack size for each thread [default: 256K]
 * **query_cache_limit**: the size of individual query results that can be cached
 * **query_cache_size**: the size of the query cache [default: 64M]
+* **table_open_cache**: the number of open tables for all threads [default: 400]
 * **skip_external_locking**: disable external locking if true [default: true]
 * **ssl**: Use SSL [default: false]
 * **ssl_ca**: SSL CA bundle file

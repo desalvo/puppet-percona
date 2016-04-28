@@ -29,6 +29,7 @@ query_cache_limit = <%= @query_cache_limit %>
 query_cache_size = <%= @query_cache_size %>
 max_allowed_packet = <%= @max_allowed_packet %>
 max_connections = <%= @max_connections %>
+table_open_cache = <%= @table_open_cache %>
 <%if @innodb_file_per_table -%>innodb_file_per_table<% end %>
 <%if @log_warnings -%>log_warnings=<%= @log_warnings %><% end %>
 <%if @skip_external_locking -%>skip_external_locking<% end %>
