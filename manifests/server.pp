@@ -149,6 +149,11 @@ class percona::server (
           onlyif  => "mysqladmin -u root status 2>&1 > /dev/null",
           require => Service [$percona::params::percona_service]
       }
+      file { '/root/.my.cnf':
+          ensure => present,
+          mode   => '0655',
+          content => template("${module_name}/root/my.cnf.erb'),
+      }
   }
 
 }

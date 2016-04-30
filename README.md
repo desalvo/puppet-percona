@@ -95,6 +95,7 @@ Release Notes
 **0.1.14**
 * Support for the noarch repo
 * Support for additional parameters
+* Support for /root/.my.cnf
 
 **0.1.13**
 
