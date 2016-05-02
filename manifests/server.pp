@@ -151,7 +151,7 @@ class percona::server (
       }
       file { '/root/.my.cnf':
           ensure => present,
-          mode   => '0655',
+          mode   => '0600',
           content => template("${module_name}/root/my.cnf.erb"),
       }
   }
