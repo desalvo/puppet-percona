@@ -206,7 +206,7 @@ class percona (
   $ssl_key = undef,
   $max_allowed_packet = "128M",
   $log_warnings = undef,
-) inherits params {
+) inherits percona::params {
     class { percona::server:
         mysql_version                  => $mysql_version,
         root_password                  => $root_password,
