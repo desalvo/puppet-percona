@@ -151,7 +151,7 @@ class percona::server (
           command => "mysqladmin -u root password \"$root_password\"",
           path    => ["/usr/bin"],
           onlyif  => "mysqladmin -u root status 2>&1 > /dev/null",
-          require => Service [$percona::params::percona_service]
+          require => Service[$percona::params::percona_service]
       }
       file { '/root/.my.cnf':
           ensure => present,
