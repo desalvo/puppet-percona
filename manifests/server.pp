@@ -51,7 +51,7 @@ class percona::server (
 
   case $::osfamily {
     'RedHat': {
-      if ($operatingsystemmajrelease < 7) {
+      if ($operatingsystemmajrelease * 1 < 7) {
         $percona_compat_packages = [
                                      'Percona-Server-shared-51',
                                    ]
@@ -122,6 +122,10 @@ class percona::server (
   $wsrep_provider_options = "gcache.size=${wsrep_max_ws_size}; gmcast.listen_addr=tcp://0.0.0.0:4010; ist.recv_addr=${ist_recv_addr}; evs.keepalive_period = PT3S; evs.inactive_check_period = PT10S; evs.suspect_timeout = PT30S; evs.inactive_timeout = PT1M; evs.install_timeout = PT1M;"
 
   file {$percona::params::percona_conf:
+      ensure  => present,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
       content => template('percona/my.cnf.erb'),
       require => Package[$percona_server_packages],
       notify  => Service[$percona::params::percona_service]
@@ -129,8 +133,8 @@ class percona::server (
 
   file {$datadir:
       ensure => directory,
-      owner  => mysql,
-      group  => mysql,
+      owner  => 'mysql',
+      group  => 'mysql',
       require => Package[$percona_server_packages],
       notify  => Service[$percona::params::percona_service]
   }
@@ -151,6 +155,8 @@ class percona::server (
       }
       file { '/root/.my.cnf':
           ensure => present,
+          owner  => 'root',
+          group  => 'root',
           mode   => '0600',
           content => template("${module_name}/root/my.cnf.erb"),
       }

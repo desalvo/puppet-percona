@@ -96,6 +96,7 @@ Release Notes
 * Support for the noarch repo
 * Support for additional parameters
 * Support for /root/.my.cnf
+* Puppet 4 support
 
 **0.1.13**
 
