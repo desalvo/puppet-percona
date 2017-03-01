@@ -47,7 +47,7 @@ class percona::server (
   $ssl_key = undef,
   $max_allowed_packet = "128M",
   $log_warnings = undef,
-) inherits params {
+) inherits percona::params {
 
   case $::osfamily {
     'RedHat': {
