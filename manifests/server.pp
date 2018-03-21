@@ -59,6 +59,14 @@ class percona::server (
         $percona_compat_packages = []
       }
       case $mysql_version {
+       '5.7': {
+          $percona_galera_package  = 'Percona-XtraDB-Cluster-galera-3'
+          $percona_server_packages = [
+                                       'Percona-XtraDB-Cluster-server-57',
+                                       'percona-xtrabackup'
+                                     ]
+          $percona_client_packages = [ 'Percona-XtraDB-Cluster-client-57' ]
+        }
         '5.6': {
           $percona_galera_package  = 'Percona-XtraDB-Cluster-galera-3'
           $percona_server_packages = [
@@ -79,23 +87,18 @@ class percona::server (
     }
     'Debian': {
       case $mysql_version {
-        '5.6': {
+        '5.6','5.7': {
           $percona_galera_package  = 'percona-xtradb-cluster-galera-3.x'
-          $percona_server_packages = [
-                                       'percona-xtradb-cluster-server-5.6',
-                                       'percona-xtrabackup'
-                                     ]
-          $percona_client_packages = [ 'percona-xtradb-cluster-client-5.6' ]
         }
         default: {
           $percona_galera_package  = 'percona-xtradb-cluster-galera-2.x'
-          $percona_server_packages = [
-                                       'percona-xtradb-cluster-server-5.5',
-                                       'percona-xtrabackup'
-                                     ]
-          $percona_client_packages = [ 'percona-xtradb-cluster-client-5.5' ]
         }
       }
+        $percona_server_packages = [
+                                    "percona-xtradb-cluster-server-${mysql_version}",
+                                    "percona-xtrabackup"
+                                     ]
+        $percona_client_packages = [ "percona-xtradb-cluster-client-${mysql_version}" ]
     }
     default:   {
     }
