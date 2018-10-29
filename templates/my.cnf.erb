@@ -30,16 +30,16 @@ query_cache_size = <%= @query_cache_size %>
 max_allowed_packet = <%= @max_allowed_packet %>
 max_connections = <%= @max_connections %>
 table_open_cache = <%= @table_open_cache %>
-<%if @innodb_file_per_table -%>innodb_file_per_table<% end %>
-<%if @log_warnings -%>log_warnings=<%= @log_warnings %><% end %>
-<%if @skip_external_locking -%>skip_external_locking<% end %>
+<%if @innodb_file_per_table -%>innodb_file_per_table<% end -%>
+<%if @log_warnings -%>log_warnings=<%= @log_warnings %><% end -%>
+<%if @skip_external_locking -%>skip_external_locking<% end -%>
 <%if @ssl -%>
 ssl = true
 ssl-ca = <% @ssl_ca %>
 ssl-cert = <% @ssl_cert %>
 ssl-key = <% @ssl_key %>
 <% end -%>
-<%if @log_slave_updates -%>log-slave-updates=ON<% end %>
+<%if @log_slave_updates -%>log-slave-updates=ON<% end -%>
 tmpdir = <%= @tmpdir %>
 
 # Query Cache is not supported with wsrep
@@ -55,7 +55,7 @@ wsrep_sst_receive_address=<%= @wsrep_sst_receive_address %>
 wsrep_slave_threads=<%= @wsrep_slave_threads %>
 wsrep_cluster_name=<%= @wsrep_cluster_name %>
 wsrep_sst_method=<%= @wsrep_sst_method %>
-<%if @wsrep_sst_auth %>wsrep_sst_auth="<%= @wsrep_sst_auth %>"<% end %>
+<%if @wsrep_sst_auth %>wsrep_sst_auth="<%= @wsrep_sst_auth %>"<% end -%>
 binlog_format=<%= @binlog_format %>
 default_storage_engine=<%= @default_storage_engine %>
 innodb_autoinc_lock_mode=<%= @innodb_autoinc_lock_mode %>
@@ -69,4 +69,4 @@ server-id = <%= @server_id %>
 
 [mysqld_safe]
 log-error=/var/log/mysqld.log
-<% if @osfamily == 'RedHat' %>pid-file=/var/run/mysqld/mysqld.pid<% end %>
+<% if @osfamily == 'RedHat' %>pid-file=/var/run/mysqld/mysqld.pid<% end -%>
