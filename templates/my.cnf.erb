@@ -79,6 +79,6 @@ server-id = <%= @server_id %>
 
 [mysqld_safe]
 log-error=/var/log/mysqld.log
-<% if @osfamily == 'RedHat' %>
+<% if @osfamily == 'RedHat' -%>
 pid-file=/var/run/mysqld/mysqld.pid
 <% end -%>
