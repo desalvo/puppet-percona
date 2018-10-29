@@ -39,6 +39,7 @@ ssl-ca = <% @ssl_ca %>
 ssl-cert = <% @ssl_cert %>
 ssl-key = <% @ssl_key %>
 <% end -%>
+<%if @log_slave_updates -%>log-slave-updates=ON<% end %>
 tmpdir = <%= @tmpdir %>
 
 # Query Cache is not supported with wsrep

@@ -142,6 +142,9 @@
 # [*tmpdir*]
 #   The path of the directory to use for creating temporary files
 #
+# [*log_slave_updates*]
+#   Controls the log slave updates (true|false), needs to be set to true for async replication
+#
 #
 # === Examples
 #
@@ -206,6 +209,7 @@ class percona (
   $ssl_key = undef,
   $max_allowed_packet = "128M",
   $log_warnings = undef,
+  $log_slave_updates = false,
 ) inherits percona::params {
     class { percona::server:
         mysql_version                  => $mysql_version,
@@ -256,5 +260,6 @@ class percona (
         ssl_key                        => $ssl_key,
         max_allowed_packet             => $max_allowed_packet,
         log_warnings                   => $log_warnings,
+        log_slave_updates              => $log_slave_updates,
     }
 }
