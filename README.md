@@ -92,6 +92,9 @@ Contributors
 Release Notes
 -------------
 
+**0.1.16**
+* Fix for new GPG Key
+
 **0.1.15**
 * Support for v5.7
 * Support for async replication
