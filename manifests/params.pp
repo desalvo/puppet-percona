@@ -10,14 +10,14 @@ class percona::params {
           descr    => "CentOS \$releasever - Percona",
           baseurl  => "http://repo.percona.com/centos/$operatingsystemmajrelease/os/\$basearch/",
           enabled  => 1,
-          gpgkey   => "https://repo.percona.com/yum/PERCONA-PACKAGING-KEY",
+          gpgkey   => "https://www.percona.com/downloads/RPM-GPG-KEY-percona",
           gpgcheck => 1
       }
       yumrepo { "Percona-noarch":
           descr    => "CentOS \$releasever noarch - Percona",
           baseurl  => "http://repo.percona.com/centos/$operatingsystemmajrelease/os/noarch/",
           enabled  => 1,
-          gpgkey   => "https://repo.percona.com/yum/PERCONA-PACKAGING-KEY",
+          gpgkey   => "https://www.percona.com/downloads/RPM-GPG-KEY-percona",
           gpgcheck => 1
       }
       $percona_repo = [Yumrepo['Percona'],Yumrepo['Percona-noarch']]
