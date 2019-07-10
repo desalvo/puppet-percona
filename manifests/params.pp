@@ -8,16 +8,16 @@ class percona::params {
       $percona_service = 'mysql'
       yumrepo { "Percona":
           descr    => "CentOS \$releasever - Percona",
-          baseurl  => "http://repo.percona.com/centos/$operatingsystemmajrelease/os/\$basearch/",
+          baseurl  => "http://repo.percona.com/percona/yum/release/\$releasever/RPMS/\$basearch/",
           enabled  => 1,
-          gpgkey   => "https://www.percona.com/downloads/RPM-GPG-KEY-percona",
+          gpgkey   => "https://repo.percona.com/yum/PERCONA-PACKAGING-KEY",
           gpgcheck => 1
       }
       yumrepo { "Percona-noarch":
           descr    => "CentOS \$releasever noarch - Percona",
-          baseurl  => "http://repo.percona.com/centos/$operatingsystemmajrelease/os/noarch/",
+          baseurl  => "http://repo.percona.com/percona/yum/release/\$releasever/RPMS/noarch/",
           enabled  => 1,
-          gpgkey   => "https://www.percona.com/downloads/RPM-GPG-KEY-percona",
+          gpgkey   => "https://repo.percona.com/yum/PERCONA-PACKAGING-KEY",
           gpgcheck => 1
       }
       $percona_repo = [Yumrepo['Percona'],Yumrepo['Percona-noarch']]
