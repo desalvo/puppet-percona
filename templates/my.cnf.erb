@@ -48,6 +48,12 @@ ssl-key = <% @ssl_key %>
 <%if @log_slave_updates -%>
 log-slave-updates=ON
 <% end -%>
+<%if @log_bin -%>
+log-bin = <%= @log_bin %>
+<% end -%>
+<%if @expire_logs_days -%>
+expire_logs_days = <%= @expire_logs_days %>
+<% end -%>
 tmpdir = <%= @tmpdir %>
 
 # Query Cache is not supported with wsrep

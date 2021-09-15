@@ -18,6 +18,8 @@ class percona::server (
   $wsrep_sst_auth = undef,
   $wsrep_cluster_name = "default",
   $binlog_format = "ROW",
+  $log_bin = undef,
+  $expire_logs_days = 10,
   $default_storage_engine = "InnoDB",
   $innodb_autoinc_lock_mode = 2,
   $innodb_locks_unsafe_for_binlog = 1,

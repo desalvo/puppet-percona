@@ -61,6 +61,12 @@
 # [*binlog_format*]
 #   The binlog format
 #
+#[*log_bin*]
+#   Log bin for master-slave replication
+#
+# [*expire_logs_days*]
+#   Log bin expiration in days
+#
 # [*default_storage_engine*]
 #   The default storage engine
 #
@@ -180,6 +186,8 @@ class percona (
   $wsrep_sst_auth = undef,
   $wsrep_cluster_name = "default",
   $binlog_format = "ROW",
+  $log_bin = undef,
+  $expire_logs_days = 10,
   $default_storage_engine = "InnoDB",
   $innodb_autoinc_lock_mode = 2,
   $innodb_locks_unsafe_for_binlog = 1,
@@ -231,6 +239,8 @@ class percona (
         wsrep_sst_auth                 => $wsrep_sst_auth,
         wsrep_cluster_name             => $wsrep_cluster_name,
         binlog_format                  => $binlog_format,
+        log_bin                        => $log_bin,
+        expire_logs_days               => $expire_logs_days,
         default_storage_engine         => $default_storage_engine,
         innodb_autoinc_lock_mode       => $innodb_autoinc_lock_mode,
         innodb_locks_unsafe_for_binlog => $innodb_locks_unsafe_for_binlog,
